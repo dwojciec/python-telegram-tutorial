@@ -11,10 +11,11 @@ import MySQLdb
 USERNAME =  os.environ['USERNAME']
 PASSWORD =  os.environ['PASSWORD']
 DATABASE =  os.environ['DATABASE']
+SERVICE = os.environ['SERVICE']
 TOKEN = os.environ['PASSWORD_KEY']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
-db = MySQLdb.connect ( user = USERNAME, passwd = PASSWORD, db = DATABASE)
+db = MySQLdb.connect(hostname= SERVICE, user = USERNAME, passwd = PASSWORD, db = DATABASE)
 
 
 def get_url(url):
