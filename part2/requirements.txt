@@ -1,3 +1,3 @@
 requests
 config
-mysql-connector-python
+mysqlclient
