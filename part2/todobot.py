@@ -4,7 +4,7 @@ import time
 import urllib
 import os
 
-import config
+
 from dbhelper import DBHelper
 
 db = DBHelper()
