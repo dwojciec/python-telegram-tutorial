@@ -1,11 +1,24 @@
-import sqlite3
-
+import mysql.connector
+from mysql.connector import errorcode
+import os
 
 class DBHelper:
 
-    def __init__(self, dbname="todo.sqlite"):
-        self.dbname = dbname
-        self.conn = sqlite3.connect(dbname)
+    def __init__(self):
+        USERNAME =  os.environ['USERNAME']
+        PASSWORD =  os.environ['PASSWORD']
+        DATABASE =  os.environ['DATABASE']
+        SERVICE = os.environ['SERVICE']
+        try: 
+          db = mysql.connector.connect(host = SERVICE, user = USERNAME, password = PASSWORD, database = DATABASE)
+        except mysql.connector.Error as err:
+          if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Something is wrong with your user name or password")
+          elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("Database does not exist")
+          else:
+            print(err)
+    
 
     def setup(self):
         tblstmt = "CREATE TABLE IF NOT EXISTS items (description text, owner text)"
