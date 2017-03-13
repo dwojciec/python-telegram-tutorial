@@ -92,11 +92,6 @@ def send_message(text, chat_id, reply_markup=None):
 
 def main():
     db.setup()
-    cursor = db.cursor ()
-    cursor.execute ("SELECT VERSION()")
-    row = cursor.fetchone ()
-    print "server version:", row[0]
-    cursor.close ()
 
     last_update_id = None
     while True:
@@ -104,8 +99,7 @@ def main():
         if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
             handle_updates(updates)
-        time.sleep(0.5)
-    db.close ()    
+        time.sleep(0.5)    
 
 
 if __name__ == '__main__':
