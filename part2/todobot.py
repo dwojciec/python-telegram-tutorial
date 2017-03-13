@@ -5,7 +5,6 @@ import urllib
 
 import config
 from dbhelper import DBHelper
-
 db = DBHelper()
 
 TOKEN = config.token
