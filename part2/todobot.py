@@ -3,14 +3,18 @@ import requests
 import time
 import urllib
 import os
+import MySQLdb
 
 
-from dbhelper import DBHelper
 
-db = DBHelper()
 
+USERNAME =  os.environ['USERNAME']
+PASSWORD =  os.environ['PASSWORD']
+DATABASE =  os.environ['DATABASE']
 TOKEN = os.environ['PASSWORD_KEY']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
+
+db = MySQLdb.connect ( user = USERNAME, passwd = PASSWORD, db = DATABASE)
 
 
 def get_url(url):
@@ -88,6 +92,12 @@ def send_message(text, chat_id, reply_markup=None):
 
 def main():
     db.setup()
+    cursor = db.cursor ()
+    cursor.execute ("SELECT VERSION()")
+    row = cursor.fetchone ()
+    print "server version:", row[0]
+    cursor.close ()
+
     last_update_id = None
     while True:
         updates = get_updates(last_update_id)
@@ -95,6 +105,7 @@ def main():
             last_update_id = get_last_update_id(updates) + 1
             handle_updates(updates)
         time.sleep(0.5)
+    db.close ()    
 
 
 if __name__ == '__main__':
