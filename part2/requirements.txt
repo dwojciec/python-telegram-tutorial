@@ -1,5 +1,2 @@
 requests
 config
-mysqlclient
-https://github.com/mysql/mysql-connector-python
-pip==9.0.1
