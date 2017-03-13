@@ -3,8 +3,9 @@ import requests
 import time
 import urllib
 import os
-import dbhelper
+from dbhelper import DBHelper
 
+db = DBHelper()
 
 
 
