@@ -1,3 +1,4 @@
 requests
 config
+setuptools
 mysql-connector-python-rf
