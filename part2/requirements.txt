@@ -1,3 +1,5 @@
 requests
 config
 mysqlclient
+mysql-connector-python
+https://dev.mysql.com/downloads/file/?id=467835
