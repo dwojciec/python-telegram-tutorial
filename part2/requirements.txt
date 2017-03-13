@@ -1,5 +1,5 @@
 requests
 config
 mysqlclient
-https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python-2.1.5.tar.gz
+https://github.com/mysql/mysql-connector-python
 pip==9.0.1
