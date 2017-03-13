@@ -1,5 +1,5 @@
 requests
 config
 mysqlclient
---upgrade pip
-https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python-2.1.5.tar.gz
+mysql-connector-python==2.1.5
+pip==9.0.1
