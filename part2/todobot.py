@@ -9,7 +9,7 @@ from dbhelper import DBHelper
 
 db = DBHelper()
 
-TOKEN = os.environ['password-key']
+TOKEN = os.environ['PASSWORD_KEY']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
 
