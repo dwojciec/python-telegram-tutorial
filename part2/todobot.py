@@ -3,16 +3,11 @@ import requests
 import time
 import urllib
 import os
-import mysql.connector
-from mysql.connector import errorcode
 import dbHelper
 
 
 
-USERNAME =  os.environ['USERNAME']
-PASSWORD =  os.environ['PASSWORD']
-DATABASE =  os.environ['DATABASE']
-SERVICE = os.environ['SERVICE']
+
 TOKEN = os.environ['PASSWORD_KEY']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
@@ -93,25 +88,14 @@ def send_message(text, chat_id, reply_markup=None):
 
 
 def main():
-    try: 
-        db = mysql.connector.connect(host = SERVICE, user = USERNAME, password = PASSWORD, database = DATABASE)
-    except mysql.connector.Error as err:
-       if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-         print("Something is wrong with your user name or password")
-       elif err.errno == errorcode.ER_BAD_DB_ERROR:
-         print("Database does not exist")
-       else:
-         print(err)
-    else:
     db.setup()
-
     last_update_id = None
     while True:
         updates = get_updates(last_update_id)
         if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
             handle_updates(updates)
-        time.sleep(0.5)    
+        time.sleep(0.5)
 
 
 if __name__ == '__main__':
