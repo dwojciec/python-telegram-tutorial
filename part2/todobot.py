@@ -3,8 +3,9 @@ import requests
 import time
 import urllib
 import os
-import MySQLdb
-
+import mysql.connector
+from mysql.connector import errorcode
+import dbHelper
 
 
 
@@ -15,7 +16,7 @@ SERVICE = os.environ['SERVICE']
 TOKEN = os.environ['PASSWORD_KEY']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
-db = MySQLdb.connect(host = SERVICE, user = USERNAME, passwd = PASSWORD, db = DATABASE)
+
 
 
 def get_url(url):
@@ -92,6 +93,16 @@ def send_message(text, chat_id, reply_markup=None):
 
 
 def main():
+    try: 
+        db = mysql.connector.connect(host = SERVICE, user = USERNAME, password = PASSWORD, database = DATABASE)
+    except mysql.connector.Error as err:
+       if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+         print("Something is wrong with your user name or password")
+       elif err.errno == errorcode.ER_BAD_DB_ERROR:
+         print("Database does not exist")
+       else:
+         print(err)
+    else:
     db.setup()
 
     last_update_id = None
