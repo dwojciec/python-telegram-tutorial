@@ -1,5 +1,5 @@
 import MySQL.connector
-from import MySQL.connector import errorcode
+from MySQL.connector import errorcode
 import os
 
 class DBHelper:
