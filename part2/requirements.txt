@@ -1,5 +1,4 @@
 requests
 config
 setuptools
-Flask-SQLAlchemy
-MySQL-Python
+mysqlclient
