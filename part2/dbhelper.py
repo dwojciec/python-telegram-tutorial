@@ -1,5 +1,5 @@
-import mysql.connector
-from mysql.connector import errorcode
+import MySQL.connector
+from import MySQL.connector import errorcode
 import os
 
 class DBHelper:
@@ -10,8 +10,8 @@ class DBHelper:
         DATABASE =  os.environ['DATABASE']
         SERVICE = os.environ['SERVICE']
         try: 
-          db = mysql.connector.connect(host = SERVICE, user = USERNAME, password = PASSWORD, database = DATABASE)
-        except mysql.connector.Error as err:
+          db = MySQL.connector.connect(host = SERVICE, user = USERNAME, password = PASSWORD, database = DATABASE)
+        except MySQL.connector.Error as err:
           if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Something is wrong with your user name or password")
           elif err.errno == errorcode.ER_BAD_DB_ERROR:
